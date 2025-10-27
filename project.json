@@ -1,0 +1,55 @@
+{
+  "name": "carmot_front",
+  "version": "1.0.0",
+  "description": "Sistema de Dashboard y KPIs para Carmot",
+  "type": "module",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@vueuse/core": "^14.0.0",
+    "axios": "^1.12.2",
+    "chart.js": "^4.5.1",
+    "pinia": "^3.0.3",
+    "vue": "^3.5.22",
+    "vue-chartjs": "^5.3.2",
+    "vue-grid-layout-v3": "^3.1.2",
+    "vue-router": "^4.6.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.1",
+    "vite": "^7.1.11",
+    "vite-plugin-vue-devtools": "^8.0.3"
+  },
+  "keywords": [
+    "vue",
+    "dashboard",
+    "kpis",
+    "charts",
+    "responsive",
+    "carmot"
+  ],
+  "author": "Equipo Carmot",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carmot/carmot_front.git"
+  },
+  "bugs": {
+    "url": "https://github.com/carmot/carmot_front/issues"
+  },
+  "homepage": "https://github.com/carmot/carmot_front#readme",
+  "documentation": {
+    "main": "docs/README.md",
+    "guides": {
+      "testing": "docs/TESTING_GUIDE.md",
+      "security": "docs/SECURITY_CONFIG.md",
+      "responsive": "docs/RESPONSIVE_GUIDE.md"
+    }
+  }
+}
