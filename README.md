@@ -53,7 +53,11 @@ src/
 ├── router/             # Configuración de rutas
 ├── services/           # Servicios API
 ├── stores/            # Stores de Pinia
-└── views/             # Vistas principales
+└── views/             # Vistas organizadas por módulos
+    ├── auth/          # Vistas de autenticación
+    ├── dashboard/     # Vistas del dashboard
+    ├── kpi/           # Vistas de KPIs
+    └── common/        # Vistas comunes
 ```
 
 ## 🔐 Sistema de Autenticación

@@ -11,37 +11,37 @@ const router = createRouter({
     {
       path: '/login',
       name: 'Login',
-      component: () => import('@/views/Login.vue'),
+      component: () => import('@/views/auth/Login.vue'),
       meta: { requiresGuest: true }
     },
     {
       path: '/dashboard',
       name: 'Dashboard',
-      component: () => import('@/views/Dashboard.vue'),
+      component: () => import('@/views/dashboard/Dashboard.vue'),
       meta: { requiresAuth: true }
     },
     {
       path: '/kpis',
       name: 'KPIs',
-      component: () => import('@/views/KPIs.vue'),
+      component: () => import('@/views/kpi/KPIs.vue'),
       meta: { requiresAuth: true }
     },
     {
       path: '/kpis/create',
       name: 'CreateKPI',
-      component: () => import('@/views/CreateKPI.vue'),
+      component: () => import('@/views/kpi/CreateKPI.vue'),
       meta: { requiresAuth: true }
     },
     {
       path: '/kpis/:id/edit',
       name: 'EditKPI',
-      component: () => import('@/views/EditKPI.vue'),
+      component: () => import('@/views/kpi/EditKPI.vue'),
       meta: { requiresAuth: true }
     },
     {
       path: '/:pathMatch(.*)*',
       name: 'NotFound',
-      component: () => import('@/views/NotFound.vue')
+      component: () => import('@/views/common/NotFound.vue')
     }
   ]
 })
