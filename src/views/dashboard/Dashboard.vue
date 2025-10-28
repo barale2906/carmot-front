@@ -18,7 +18,7 @@
     <main class="dashboard-main">
       <div class="welcome-section">
         <div class="welcome-card">
-          <h2>¡Bienvenido al Sistema Carmot!</h2>
+          <h2>¡Bienvenido al dashboard!</h2>
           <p>Aquí podrás gestionar KPIs y crear dashboards personalizados.</p>
           
           <div class="quick-actions">

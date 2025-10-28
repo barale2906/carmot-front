@@ -3,7 +3,7 @@
     <div class="login-card">
       <div class="login-header">
         <img src="/favicon.ico" alt="Carmot Logo" class="logo" />
-        <h1>Sistema Carmot</h1>
+        <h1>Dashboard</h1>
         <p>Inicia sesión para acceder al dashboard</p>
       </div>
 
