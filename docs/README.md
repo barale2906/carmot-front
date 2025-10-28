@@ -6,6 +6,12 @@
 - **[Guía de Pruebas](TESTING_GUIDE.md)** - Testing del sistema de autenticación
 - **[Configuración de Seguridad](SECURITY_CONFIG.md)** - Mejores prácticas de seguridad
 
+### **📊 Sistema de KPIs**
+- **[Constructor de KPIs](KPI_BUILDER_GUIDE.md)** - Wizard para crear indicadores
+
+### **🔔 Sistema de Notificaciones**
+- **[Guía de Notificaciones](NOTIFICATIONS_GUIDE.md)** - Manejo de errores y alertas
+
 ### **📱 Diseño y UX**
 - **[Guía de Responsive Design](RESPONSIVE_GUIDE.md)** - Diseño responsivo y mobile-first
 

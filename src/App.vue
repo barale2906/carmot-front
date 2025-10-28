@@ -1,11 +1,12 @@
 <template>
   <div id="app">
     <router-view />
+    <NotificationContainer />
   </div>
 </template>
 
 <script setup>
-// App principal con router-view
+import NotificationContainer from '@/components/common/NotificationContainer.vue'
 </script>
 
 <style>
