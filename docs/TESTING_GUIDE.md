@@ -158,9 +158,8 @@ Asegurar que el backend tenga CORS configurado para:
 
 Una vez que las pruebas de autenticación sean exitosas:
 
-1. **Sistema de KPIs** - Constructor y gestión
-2. **Dashboard avanzado** - Gráficos y visualizaciones  
-3. **Filtros dinámicos** - Para análisis de datos
+1. Definir rutas post-login
+2. Implementar vistas iniciales del sistema
 
 ## 📞 **Soporte**
 

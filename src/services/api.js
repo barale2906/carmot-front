@@ -35,9 +35,9 @@ api.interceptors.request.use(
 // Interceptor para responses
 api.interceptors.response.use(
   (response) => {
-    // Log para desarrollo
+    // Log para desarrollo (sin datos sensibles)
     if (import.meta.env.DEV) {
-      console.log(`✅ API Response: ${response.config.method?.toUpperCase()} ${response.config.url}`, response.data)
+      console.log(`✅ API Response: ${response.config.method?.toUpperCase()} ${response.config.url}`)
     }
     
     return response
@@ -45,8 +45,8 @@ api.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config
     
-    // Log del error
-    console.error('❌ API Error:', error.response?.status, error.response?.data || error.message)
+    // Log del error (sin datos sensibles)
+    console.error('❌ API Error:', error.response?.status, error.message)
     
     // Manejo de errores de autenticación
     if (error.response?.status === 401 && !originalRequest._retry) {
@@ -80,12 +80,12 @@ api.interceptors.response.use(
     
     // Manejo de errores 422 (Validation Error)
     if (error.response?.status === 422) {
-      console.warn('📝 Validation errors:', error.response.data.errors)
+      console.warn('📝 Validation errors detected')
     }
     
     // Manejo de errores 500 (Server Error)
     if (error.response?.status >= 500) {
-      console.error('🔥 Server error:', error.response.data)
+      console.error('🔥 Server error occurred')
     }
     
     return Promise.reject(error)

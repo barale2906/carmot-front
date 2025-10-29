@@ -38,7 +38,7 @@ El sistema de notificaciones proporciona una forma elegante y consistente de mos
 - **Propósito:** Interfaz simplificada para usar notificaciones
 - **Características:**
   - Métodos de conveniencia
-  - Manejo específico de errores de KPIs
+  - Manejo automático de errores de API
   - Integración con stores
 
 #### **3. NotificationContainer (Componente)**
@@ -60,7 +60,7 @@ import { useNotifications } from '@/composables/useNotifications'
 const { success, error, warning, info } = useNotifications()
 
 // Notificación de éxito
-success('Operación Exitosa', 'El KPI se ha creado correctamente')
+success('Operación Exitosa', 'La operación se ha completado correctamente')
 
 // Notificación de error
 error('Error de Validación', 'Los datos enviados no son válidos')
@@ -77,13 +77,13 @@ info('Información', 'Los datos se han guardado automáticamente')
 ```javascript
 import { useNotifications } from '@/composables/useNotifications'
 
-const { showKPIError, showFieldError, showMetadataError } = useNotifications()
+const { handleApiError, showFieldError, showMetadataError } = useNotifications()
 
 // En un composable o servicio
 try {
-  await kpiService.createKPI(data)
+  await someService.create(data)
 } catch (err) {
-  showKPIError(err) // Manejo automático del error
+  handleApiError(err, 'Error de Validación')
 }
 ```
 
@@ -267,26 +267,25 @@ message: "El nombre es requerido, El email no es válido"
 
 ## 📚 **Documentación Relacionada**
 
-- **[Guía de KPIs](KPI_BUILDER_GUIDE.md)** - Uso en constructor de KPIs
 - **[Guía de Testing](TESTING_GUIDE.md)** - Casos de prueba
 - **[Arquitectura](src/views/README.md)** - Estructura del proyecto
 
 ## 🔍 **Ejemplo Real de Manejo de Errores**
 
-### **Caso Específico: Error de Validación de KPI**
+### **Caso Específico: Error de Validación (422)**
 
 ```javascript
 // Respuesta del backend (422 - Error de Validación)
 {
-  "message": "El tipo de cálculo es obligatorio.",
+  "message": "El nombre es obligatorio.",
   "errors": {
-    "calculation_type": ["El tipo de cálculo es obligatorio."]
+    "name": ["El nombre es obligatorio."]
   }
 }
 
 // El sistema mostrará:
-// Título: "Error Creando KPI"
-// Mensaje: "El tipo de cálculo es obligatorio."
+// Título: "Error de Validación"
+// Mensaje: "El nombre es obligatorio."
 ```
 
 ### **Prioridad de Mensajes**

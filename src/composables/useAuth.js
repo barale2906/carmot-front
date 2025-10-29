@@ -13,6 +13,7 @@ export function useAuth() {
   const user = computed(() => authStore.user)
   const userRole = computed(() => authStore.userRole)
   const userName = computed(() => authStore.userName)
+  const userId = computed(() => authStore.user?.id || null)
 
   // Función de login
   const login = async (credentials) => {
@@ -109,6 +110,7 @@ export function useAuth() {
     user,
     userRole,
     userName,
+    userId,
     
     // Métodos
     login,

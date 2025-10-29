@@ -39,40 +39,7 @@ export function useNotifications() {
     notificationStore.clearAll()
   }
 
-  // Método para mostrar errores de creación de KPI
-  const showKPIError = (apiError) => {
-    let title = 'Error Creando KPI'
-    let message = 'Ha ocurrido un error al crear el KPI'
-
-    if (apiError.response?.data) {
-      const data = apiError.response.data
-      
-      // Usar el mensaje específico del backend
-      if (data.message) {
-        message = data.message
-      }
-      
-      // Si hay errores específicos, mostrarlos
-      if (data.errors && typeof data.errors === 'object') {
-        const errorMessages = Object.values(data.errors).flat()
-        if (errorMessages.length > 0) {
-          message = errorMessages.join(', ')
-        }
-      }
-    }
-
-    return error(title, message, {
-      persistent: true,
-      actions: [
-        {
-          label: 'Reintentar',
-          action: () => {
-            console.log('Reintentar creación de KPI')
-          }
-        }
-      ]
-    })
-  }
+  // Métodos específicos de dominio removidos (KPI)
 
   // Método para mostrar errores de campos
   const showFieldError = (apiError) => {
@@ -102,7 +69,6 @@ export function useNotifications() {
 
     // Manejo de errores
     handleApiError,
-    showKPIError,
     showFieldError,
     showRelationError,
     showMetadataError,

@@ -1,4 +1,4 @@
-# Carmot Frontend - Sistema de Dashboard y KPIs
+# Carmot Frontend - Autenticación
 
 ## 📚 **Documentación**
 
@@ -46,8 +46,6 @@ npm run dev
 src/
 ├── components/          # Componentes Vue reutilizables
 │   ├── auth/           # Componentes de autenticación
-│   ├── dashboard/      # Componentes del dashboard
-│   ├── kpi/            # Componentes de KPIs
 │   └── common/         # Componentes comunes
 ├── composables/         # Composables Vue (lógica reutilizable)
 ├── router/             # Configuración de rutas
@@ -55,8 +53,7 @@ src/
 ├── stores/            # Stores de Pinia
 └── views/             # Vistas organizadas por módulos
     ├── auth/          # Vistas de autenticación
-    ├── dashboard/     # Vistas del dashboard
-    ├── kpi/           # Vistas de KPIs
+    
     └── common/        # Vistas comunes
 ```
 
@@ -105,17 +102,7 @@ src/
 
 ## 📊 Próximas Funcionalidades
 
-### Fase 2: Sistema de KPIs
-- [ ] Constructor de KPIs con wizard
-- [ ] Configuración de campos
-- [ ] Relaciones matemáticas
-- [ ] CRUD completo de KPIs
-
-### Fase 3: Dashboard y Gráficos
-- [ ] Layout del dashboard
-- [ ] Componentes de gráficos (Chart.js)
-- [ ] Sistema de tarjetas
-- [ ] Filtros dinámicos
+- [ ] Nuevas vistas posteriores al login
 
 ## 🔧 Scripts Disponibles
 
