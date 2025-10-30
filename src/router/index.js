@@ -32,6 +32,12 @@ const router = createRouter({
       component: () => import('@/views/kpi/KpiCreate.vue')
     },
     {
+      path: '/kpis/:id/view',
+      name: 'KpiDetail',
+      meta: { requiresAuth: true },
+      component: () => import('@/views/kpi/KpiDetail.vue')
+    },
+    {
       path: '/dashboards',
       name: 'Dashboards',
       meta: { requiresAuth: true },

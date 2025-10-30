@@ -142,6 +142,7 @@
           Esquema del gráfico (JSON)
           <textarea v-model="form.chart_schema" rows="6" placeholder='{"title": {...}, "series": [...]}'></textarea>
         </label>
+
       </div>
 
       <div class="wizard-actions">

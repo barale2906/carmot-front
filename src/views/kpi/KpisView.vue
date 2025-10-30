@@ -20,7 +20,9 @@
       </thead>
       <tbody>
         <tr v-for="item in kpis" :key="item.id">
-          <td>{{ item.name }}</td>
+          <td>
+            <router-link :to="{ name: 'KpiDetail', params: { id: item.id } }">{{ item.name }}</router-link>
+          </td>
           <td>{{ item.code }}</td>
           <td>{{ item.unit }}</td>
           <td>{{ item.is_active ? 'Sí' : 'No' }}</td>

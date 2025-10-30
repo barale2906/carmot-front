@@ -60,18 +60,21 @@ Este documento define el flujo y las tareas para implementar la gestión de KPIs
    - Rutas actualizadas: añadido `/kpis/new` en `src/router/index.js`.
    - Integrado sistema de notificaciones: éxito en creación/eliminación de KPI; manejo de errores vía `useNotifications`.
    - Confirmación de eliminación: modal simple en `KpisView` para confirmar antes de borrar.
-2. Previsualización en vivo:
-   - Al cambiar numerador/denominador/fechas/agrupación, invocar `computeKpi(id, params)` y renderizar en `v-chart`.
-3. Persistencia:
-   - Guardar KPI vía `createKpi`/`updateKpi` con su `chart_schema` final.
+2. Previsualización en vivo ✅ (COMPLETADO)
+   - Implementado componente `src/components/KpiChart.vue` que consume `computeKpi(id, params)` y renderiza en `v-chart`.
+   - La visualización del KPI se realiza en la vista de detalle `src/views/kpi/KpiDetail.vue` accesible desde el listado de KPIs.
+   - Se muestran `description` y `range` entregados por el endpoint de `compute` junto al gráfico.
+3. Persistencia ✅ (COMPLETADO)
+   - `src/views/kpi/KpiCreate.vue` envía el KPI mediante `createKpi` incluyendo el `chart_schema` final (si el usuario ingresa JSON válido se parsea antes de enviar; de lo contrario se conserva como string).
+   - El alta redirige a `/kpis` y muestra notificación de éxito; errores se manejan con `useNotifications`.
 
-### 5) Implementación del componente de gráfico KPI
+### 5) Implementación del componente de gráfico KPI ✅ (COMPLETADO)
 
 1. `components/KpiChart.vue`:
-   - Props: `kpiId`, `params`, `autoRefresh`, `refreshInterval`.
-   - Lógica: llamar a `computeKpi` al montar y cuando cambien props, mostrar loader/errores y emitir eventos (`data-loaded`, `error`).
-   - Render: `<v-chart :option="chartOption" style="width:100%;height:100%" />` usando el `chart` de la respuesta.
-2. Soportar actualizaciones en tiempo real cuando cambien filtros, fechas, agrupaciones o tamaño del contenedor.
+   - Props: `kpiId`, `params`, `autoRefresh`, `refreshInterval`, `height`.
+   - Lógica: invoca `computeKpi` en montaje y ante cambios de `kpiId`/`params`; muestra loader/errores y emite `data-loaded`/`error`.
+   - Render: `<v-chart :option="chartOption" />` usando directamente `data.chart`.
+2. Auto-refresh opcional por intervalo; actualizaciones en tiempo real ante cambios de filtros/fechas/agrupación.
 
 ### 6) Gestión de Dashboards
 
