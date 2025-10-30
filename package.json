@@ -14,8 +14,11 @@
   "dependencies": {
     "@vueuse/core": "^14.0.0",
     "axios": "^1.12.2",
+    "echarts": "^5.3.1",
     "pinia": "^3.0.3",
     "vue": "^3.5.22",
+    "vue-echarts": "^6.0.2",
+    "vue-grid-layout": "^2.4.0",
     "vue-router": "^4.6.3"
   },
   "devDependencies": {

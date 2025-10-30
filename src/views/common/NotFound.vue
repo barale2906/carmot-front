@@ -7,9 +7,9 @@
       <p>La página que buscas no existe o ha sido movida.</p>
       
       <div class="actions">
-        <router-link to="/dashboard" class="action-button primary">
+        <router-link to="/blank" class="action-button primary">
           <span class="button-icon">🏠</span>
-          Ir al Dashboard
+          Ir al Inicio
         </router-link>
         <button @click="goBack" class="action-button secondary">
           <span class="button-icon">⬅️</span>
@@ -29,7 +29,7 @@ const goBack = () => {
   if (window.history.length > 1) {
     router.go(-1)
   } else {
-    router.push('/dashboard')
+    router.push('/blank')
   }
 }
 </script>
