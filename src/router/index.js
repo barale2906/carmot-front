@@ -6,12 +6,36 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/login'
+      redirect: '/home'
     },
     {
       path: '/login',
       name: 'Login',
       component: () => import('@/views/auth/Login.vue')
+    },
+    {
+      path: '/home',
+      name: 'Home',
+      meta: { requiresAuth: true },
+      component: () => import('@/views/home/Home.vue')
+    },
+    {
+      path: '/kpis',
+      name: 'Kpis',
+      meta: { requiresAuth: true },
+      component: () => import('@/views/kpi/KpisView.vue')
+    },
+    {
+      path: '/kpis/new',
+      name: 'KpiCreate',
+      meta: { requiresAuth: true },
+      component: () => import('@/views/kpi/KpiCreate.vue')
+    },
+    {
+      path: '/dashboards',
+      name: 'Dashboards',
+      meta: { requiresAuth: true },
+      component: () => import('@/views/dashboard/DashboardsView.vue')
     },
     {
       path: '/blank',

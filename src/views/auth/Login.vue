@@ -138,8 +138,8 @@ const handleLogin = async () => {
   })
 
   if (result.success) {
-    // Redirigir a página en blanco segura
-    router.push('/blank')
+    // Redirigir al Home de navegación post-login
+    router.push('/home')
   }
 }
 

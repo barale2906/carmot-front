@@ -95,14 +95,14 @@ export const useNotificationStore = defineStore('notifications', () => {
   }
 
   // Método para manejar errores de API
-  const handleApiError = (error, defaultTitle = 'Error') => {
+  const handleApiError = (apiError, defaultTitle = 'Error') => {
     let title = defaultTitle
     let message = 'Ha ocurrido un error inesperado'
 
-    if (error.response) {
+    if (apiError.response) {
       // Error de respuesta del servidor
-      const status = error.response.status
-      const data = error.response.data
+      const status = apiError.response.status
+      const data = apiError.response.data
 
       // Siempre usar el mensaje del backend si está disponible
       if (data && data.message) {
@@ -146,14 +146,14 @@ export const useNotificationStore = defineStore('notifications', () => {
           message = errorMessages.join(', ')
         }
       }
-    } else if (error.request) {
+    } else if (apiError.request) {
       // Error de red
       title = 'Error de Conexión'
       message = 'No se pudo conectar con el servidor. Verifica tu conexión a internet.'
     } else {
       // Otros errores
       title = 'Error'
-      message = error.message || 'Ha ocurrido un error inesperado'
+      message = apiError.message || 'Ha ocurrido un error inesperado'
     }
 
     return error(title, message, {
