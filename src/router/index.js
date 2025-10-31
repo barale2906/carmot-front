@@ -44,6 +44,36 @@ const router = createRouter({
       component: () => import('@/views/dashboard/DashboardsView.vue')
     },
     {
+      path: '/dashboards/:id',
+      name: 'DashboardDetail',
+      meta: { requiresAuth: true },
+      component: () => import('@/views/dashboard/Dashboard.vue')
+    },
+    {
+      path: '/dashboards/:id/cards/new',
+      name: 'DashboardCardCreate',
+      meta: { requiresAuth: true },
+      component: () => import('@/views/dashboard/DashboardCardCreate.vue')
+    },
+    {
+      path: '/dashboards/:dashboardId/cards/:cardId/edit',
+      name: 'DashboardCardEdit',
+      meta: { requiresAuth: true },
+      component: () => import('@/views/dashboard/DashboardCardEdit.vue')
+    },
+    {
+      path: '/dashboards/new',
+      name: 'DashboardCreate',
+      meta: { requiresAuth: true },
+      component: () => import('@/views/dashboard/DashboardCreate.vue')
+    },
+    {
+      path: '/dashboards/:id/edit',
+      name: 'DashboardEdit',
+      meta: { requiresAuth: true },
+      component: () => import('@/views/dashboard/DashboardEdit.vue')
+    },
+    {
       path: '/blank',
       name: 'Blank',
       component: () => import('@/views/common/Blank.vue')

@@ -81,32 +81,35 @@ Este documento define el flujo y las tareas para implementar la gestión de KPIs
 1. Listado (`views/DashboardsView.vue`) 🚧 (ESQUELETO CREADO)
    - Mostrar dashboards, botón “Nuevo Dashboard”, navegación a detalle, contador de tarjetas.
    - Estado aplicado: creada `src/views/dashboard/DashboardsView.vue` como placeholder para facilitar navegación.
+2. CRUD de Dashboards ✅ (COMPLETADO)
+   - Listado con acciones de crear, editar y eliminar: `src/views/dashboard/DashboardsView.vue`.
+   - Formulario reutilizable: `src/views/dashboard/DashboardForm.vue`.
+   - Crear: `src/views/dashboard/DashboardCreate.vue` (incluye `user_id` del usuario autenticado en el payload).
+   - Editar: `src/views/dashboard/DashboardEdit.vue`.
+   - En el formulario, el campo se muestra como “Tipo de Dashboard” (antes “Scope”). Si se selecciona “general” se marca `is_default = true`; si se selecciona “privado” se marca `is_default = false`.
+   - Rutas: `/dashboards/new`, `/dashboards/:id/edit`.
 
 ### Navegación inicial post-login ✅ (AÑADIDO)
 - Se añadió una vista de inicio `src/views/home/Home.vue` con accesos a “Gestionar KPIs” y “Gestionar Dashboards”.
 - Se actualizaron rutas en `src/router/index.js`: `/home` (requiresAuth), `/kpis`, `/dashboards`, y redirección de `/` a `/home`.
 - Se actualizó la redirección post-login para llevar a `/home` (antes iba a `/blank`).
 - Se creó componente reutilizable `src/components/common/NavBar.vue` (nombre de usuario + cerrar sesión) y se integró en `Home`, `KpisView` y `DashboardsView`.
-2. Detalle (`components/Dashboard.vue`):
-   - Cargar dashboard y sus cards.
-   - Mapear `cards` a `layout` para `vue-grid-layout` con: `i`, `x`, `y`, `w`, `h`.
-   - `@layout-updated` persistirá `position_x`, `position_y`, `width`, `height` vía `updateDashboardCard` en tiempo real.
-   - Acción “Exportar PDF” llamando a `exportDashboardPdf` y descargando el blob.
+2. Detalle (`views/dashboard/Dashboard.vue`) ✅ (AJUSTADO)
+   - Carga dashboard y sus cards, lista con acciones Crear/Editar/Eliminar.
+   - Formularios en modal para tarjetas usando `DashboardCardForm.vue` con previsualización del KPI (`KpiChart`).
+   - Ruta: `/dashboards/:id`.
 
-### 7) Gestión de DashboardCards (edición visual en tiempo real)
+### 7) Gestión de DashboardCards (edición visual en tiempo real) ✅ (COMPLETADO)
 
-1. `components/DashboardCard.vue`:
-   - Props: `card` (incluye `kpi_id`, `background_color`, `border_color`, y dimensiones), `isDragging`.
-   - Estilos reactivos para `background` y borde, ajustando padding y sombra.
-   - Panel de ajustes: `period_type`, `start_date`, `end_date`, `group_by`, `group_limit`.
-   - Render interno: `<KpiChart :kpi-id="card.kpi_id" :params="localParams" :auto-refresh="true" />`.
-   - Al cambiar parámetros, el gráfico se actualiza; emitir eventos si se requiere.
-   - Carga de opciones de `group_by` con `getGroupByOptions` (según `numerator_model` y `date_field`).
-   - Botones: abrir/cerrar ajustes y eliminar tarjeta (`@remove-card`).
-2. Persistencia en tiempo real de layout:
-   - `vue-grid-layout` emite `layout-updated` con `x,y,w,h` por ítem → persistir en el backend.
-3. Persistencia de apariencia:
-   - Cambios de `background_color`/`border_color` se guardan vía `updateDashboardCard`.
+1. CRUD de DashboardCards en `views/dashboard/Dashboard.vue`:
+   - Listado de tarjetas con acciones Crear/Editar/Eliminar.
+   - Formulario `views/dashboard/DashboardCardForm.vue` con campos: `kpi_id`, `position_x`, `position_y`, `width`, `height`, `background_color`, `border_color`, `period_type`, `start_date`, `end_date`, `date_field`, `group_by`, `group_limit`.
+   - Previsualización del KPI seleccionando `kpi_id`, usando `KpiChart` con los parámetros.
+2. Persistencia:
+   - Crear: `createDashboardCard(payload)` incluyendo `dashboard_id` del dashboard actual.
+   - Editar: `updateDashboardCard(id, payload)`.
+   - Eliminar: `deleteDashboardCard(id)`.
+3. (Futuro) Integración con `vue-grid-layout` para drag/resize y persistencia de `x,y,w,h` en tiempo real.
 
 ### 8) Integración de `vue-grid-layout` (drag/resize)
 
@@ -150,9 +153,9 @@ Este documento define el flujo y las tareas para implementar la gestión de KPIs
 - KPI:
   - `id`, `name`, `code`, `description`, `unit`, `is_active`, `numerator_model`, `numerator_field`, `numerator_operation`, `denominator_model?`, `denominator_field?`, `denominator_operation?`, `calculation_factor`, `target_value?`, `date_field`, `period_type`, `chart_type`, `chart_schema`.
 - Dashboard:
-  - `id`, `name`, `description`, `scope` (general/específico), `owner_id` (para privados), contadores.
+  - `id`, `name`, `scope` (general/privado), `is_default` (bool derivado de `scope`), `user_id` (para privados), contadores.
 - DashboardCard:
-  - `id`, `dashboard_id`, `kpi_id`, `position_x`, `position_y`, `width`, `height`, `background_color?`, `border_color?`.
+  - `id`, `dashboard_id`, `kpi_id`, `position_x`, `position_y`, `width`, `height`, `background_color?`, `border_color?`, `period_type?`, `start_date?`, `end_date?`, `date_field?`, `group_by?`, `group_limit?`.
 
 ### 14) Checklist de implementación (orden sugerido)
 
